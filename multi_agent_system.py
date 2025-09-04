@@ -146,7 +146,7 @@ class EntropyCollector:
         current_hour = datetime.now().hour
         # Peak randomness during transition periods (dawn/dusk)
         transition_factor = abs(np.sin(np.pi * current_hour / 12))
-        return transition_factor * random.random()
+        return float(transition_factor * random.random())  # Convert to Python float
 
 
 # ============================================================================
@@ -396,6 +396,7 @@ class AdvancedMultiAgentSystem:
             "supervisor",
             self.route_next_agent,
             {
+                "supervisor": "supervisor",  # Allow supervisor to loop back to itself
                 "researcher": "researcher",
                 "analyst": "analyst",
                 "coder": "coder",
@@ -439,7 +440,7 @@ class AdvancedMultiAgentSystem:
         return {
             "messages": [response],
             "current_agent": next_agent,
-            "entropy_pool": state.get("entropy_pool", []) + [entropy]
+            "entropy_pool": state.get("entropy_pool", []) + [float(entropy)]  # Ensure Python float
         }
     
     async def research_agent(self, state: MultiAgentState) -> dict:
