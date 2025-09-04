@@ -26,7 +26,7 @@ class AutonomousAgent:
     
     def __init__(self, 
                  name: str,
-                 model: str = "huihui_ai/qwen3-abliterated:0.6b",
+                 model: str = "huihui_ai/jan-nano-abliterated:4b",
                  temperature: float = 0.8):
         self.name = name
         self.model = model
